@@ -23,14 +23,13 @@ A : For the purpose of this question, NO. Even if the input has zeroes before th
 https://www.interviewbit.com/problems/add-one-to-number/
 */
 
-vector<int> Solution::plusOne(vector<int> &A) {
+std::optional<vector<int>> Solution::plusOne(const vector<int> &A) {
     vector<int> result;
     if (A.empty())
-        return result;
+        return vector<int>();
     
     int z = 0; int size = A.size();
-    while (z < size && A[z] == 0)
-        ++z;
+    while (z < size && A[z++] == 0){}
     if (z == size)
         return vector<int> {1};
     
@@ -64,6 +63,6 @@ vector<int> Solution::plusOne(vector<int> &A) {
             result.emplace_back(t);
     }
     else
-        result = vector<int>(A.cbegin() + z, A.cend());
+        return vector<int>(A.cbegin() + z, A.cend());
     return result;
 }
