@@ -24,13 +24,12 @@ https://www.interviewbit.com/problems/add-one-to-number/
 */
 
 vector<int> Solution::plusOne(vector<int> &A) {
-    vector<int> result;
     if (A.empty())
-        return result;
+        return vector<int>();
     
-    int z = 0; int size = A.size();
-    while (z < size && A[z] == 0)
-        ++z;
+    int z = 0; auto size = A.size();
+    while (z < size && A[z++] == 0){}
+    --z;
     if (z == size)
         return vector<int> {1};
     
@@ -58,12 +57,11 @@ vector<int> Solution::plusOne(vector<int> &A) {
     
     if (carry)
     {
-        result.emplace_back(carry);
-        vector<int> temp(A.cbegin() + z, A.cend());
-        for (auto& t : temp)
-            result.emplace_back(t);
+        vector<int> result(1,carry);
+        for(auto it=A.cbegin()+z; it!=A.cend(); ++it)
+            result.push_back(t);
+        return result;
     }
     else
-        result = vector<int>(A.cbegin() + z, A.cend());
-    return result;
+        return vector<int>(A.cbegin() + z, A.cend());
 }
